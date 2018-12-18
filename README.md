@@ -1,32 +1,43 @@
 # expack
+
 boilerplate for express + webpack stack
 
 ---
+
 ## Intro
+
 A minial setup to start a server with express, with minimal tweak to match with nginx config.
+
 > issue, question and pull request are welcome.
 
 ### Using the repo
-clone the repo and do neccessary change on output directory, outputting `dist/server.js` and `dist/index.html` to minimal the  unexpected path resolve error.
+
+clone the repo and do neccessary change on output directory, outputting `dist/server.js` and `dist/index.html` to minimal the unexpected path resolve error.
 
 #### run locally
-`yarn` then `yarn start`;
+
+`yarn` and `yarn build-dev`, then `yarn start`;
 
 #### run on your droplet
+
 - git remote add origin `$YOUR_REMOTE_GIT_URL`
 - adding post-receive [hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) in `${YOUR_REMOTE_GIT}.git/hook/post-receive`
 - git push origin master
-> extra thanks for this [friendly guide](https://medium.com/@aunnnn/automate-digitalocean-deployment-for-node-js-with-git-and-pm2-67a3cfa7a02b) to adding git hook
+  > extra thanks for this [friendly guide](https://medium.com/@aunnnn/automate-digitalocean-deployment-for-node-js-with-git-and-pm2-67a3cfa7a02b) to adding git hook
 
 ### Feature
+
 - [x] jest unit test enable
 - [x] webpack config for both dev and prod
 - [x] eslint enabled
 - [x] hot reload enabled
 
 ### Optional feature not include
+
 - [ ] add react into stack
 - [ ] css compilation (during the time when of [cssinjs](https://github.com/cssinjs) getting their popularity, and I decide not include it in the stack)
 
 ### Todo
+
 - [ ] add more comment with description in each configuration options
+- [ ] add a sample git `post-receive` hook

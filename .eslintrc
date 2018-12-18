@@ -1,0 +1,9 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["eslint:recommended"],
+  "env": { "node": true },
+  "plugins": ["jest"],
+  "rules": {
+    "no-console": 0
+  }
+}

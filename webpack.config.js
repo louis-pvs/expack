@@ -5,19 +5,22 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
-const PATHS = {
-  DIST_DIR: path.join(__dirname, "/dist"),
-  SRC_DIR: path.join(__dirname, "/src")
-};
+const DIST_DIR = path.join(__dirname, "/dist");
 
+// comparing to webpack early version, configs file has become much simpler
+// splitting them into different file for your own convenient if needed
 module.exports = (env, args) => {
   const { mode } = args;
-  // console.dir(args);
+  // config.mode only limit to 'none', 'development' and 'production', safer to define them explicitly instea of
+  // `mode: args.mode` avoid user passing `test` or other mode into script arguments
   const devConfig = {
     mode: "development",
     entry: {
       main: [
+        // Require to let hot reload to work
+        // remove `&quite=true` if you need console log when hot reload occur
         "webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true&quiet=true&overlayWarning=true",
+        // using explicit path for entry, to avoid error occour in compilation
         "./src/index.js"
       ]
     },
@@ -37,6 +40,7 @@ module.exports = (env, args) => {
         }
       ]
     },
+    // hot reload only needed in development
     plugins: [new webpack.HotModuleReplacementPlugin()]
   };
   const prodConfig = {
@@ -49,12 +53,13 @@ module.exports = (env, args) => {
       minimizer: [
         new UglifyJsPlugin({
           cache: true,
-          parallel: true
+          parallel: true,
+          sourceMap: false // set to true if you want JS source maps
         })
       ]
     },
     plugins: [
-      new CleanWebpackPlugin([PATHS.DIST_DIR], {
+      new CleanWebpackPlugin([DIST_DIR], {
         root: __dirname,
         verbose: true
       })
@@ -64,7 +69,7 @@ module.exports = (env, args) => {
     mode: "none",
     bail: true,
     output: {
-      path: PATHS.DIST_DIR,
+      path: DIST_DIR,
       publicPath: "/",
       filename: "javascript/[name].js"
     },
@@ -77,6 +82,8 @@ module.exports = (env, args) => {
           use: { loader: "babel-loader" }
         },
         {
+          // Loads the javacript into html template provided.
+          // Entry point is set below in HtmlWebPackPlugin in Plugins
           test: /\.html$/,
           use: [{ loader: "html-loader", options: { minimize: true } }]
         },
@@ -91,7 +98,7 @@ module.exports = (env, args) => {
         template: "./src/index.ejs",
         title: "louis-vincent.me",
         author: "Louis.P",
-        filename: path.join(PATHS.DIST_DIR, "/index.html"),
+        filename: path.join(DIST_DIR, "/index.html"),
         excludeChunks: ["server"]
       })
     ]
@@ -100,6 +107,6 @@ module.exports = (env, args) => {
     production: prodConfig,
     development: devConfig
   };
-  // console.log("envConfig", envConfig[mode]);
+
   return merge(commonConfig, envConfig[mode] || {});
 };

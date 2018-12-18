@@ -23,6 +23,7 @@ module.exports = (env, args) => {
     },
     target: "node",
     node: {
+      // Need this when working with express, otherwise the build fails
       __dirname: false,
       __filename: false
     },

@@ -1,10 +1,12 @@
 const express = require("express");
 
-const app = express();
+// configure server port:
+const PORT = process.env.PORT || 3000;
 
-const PORT = process.env.PORT || 8080;
 const DIST_DIR = __dirname;
 
+// create app instance
+const app = express();
 app
   .use(express.static(DIST_DIR))
   .get("/", (req, res) => res.sendFile("./index.html"))

@@ -42,10 +42,7 @@ module.exports = (env, args) => {
       ]
     },
     // hot reload only needed in development
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new OpenBrowserPlugin({ url: "http://localhost:3000" })
-    ]
+    plugins: [new webpack.HotModuleReplacementPlugin()]
   };
   const prodConfig = {
     mode: "production",

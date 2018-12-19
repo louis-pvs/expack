@@ -3,7 +3,7 @@ import webpackHotMiddleware from "webpack-hot-middleware";
 import express from "express";
 import webpack from "webpack";
 import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
-
+import OpenBrowserPlugin from "open-browser-webpack-plugin";
 import webpackConfig from "../../webpack.config";
 
 // configure server port:
@@ -16,6 +16,9 @@ const envConfig = webpackConfig({}, { mode: "development" });
 // invoking it is neccessary
 // in webpack.config.js are exported using function
 const compiler = webpack(envConfig);
+
+// applying the plugin here to share PORT definition
+// format webpack logs in friendlier manner
 compiler.apply(
   new FriendlyErrorsWebpackPlugin({
     compilationSuccessInfo: {
@@ -24,6 +27,8 @@ compiler.apply(
     }
   })
 );
+// propm browser to open automatically
+compiler.apply(new OpenBrowserPlugin({ url: `http://localhost:${PORT}` }));
 
 const devMiddleware = webpackDevMiddleware(compiler, {
   // required option for webpack-dev-middleware

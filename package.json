@@ -9,7 +9,6 @@
   "scripts": {
     "test": "jest",
     "start": "node ./dist/server.js",
-    "dashboard": "webpack-dashboard -- node ./dist/server.js",
     "build:server": "webpack --config webpack.server.config.js",
     "build:app": "webpack",
     "build": "run-p \"build:* --parallel --mode=production\"",
@@ -37,7 +36,6 @@
     "uglifyjs-webpack-plugin": "^2.0.1",
     "webpack": "^4.27.1",
     "webpack-cli": "^3.1.2",
-    "webpack-dashboard": "^2.0.0",
     "webpack-dev-middleware": "^3.4.0",
     "webpack-hot-middleware": "^2.24.3",
     "webpack-merge": "^4.1.5",

@@ -39,8 +39,7 @@ A: structure your code like production ready even when it still in development
 - [x] webpack config for both dev and prod
 - [x] eslint enabled
 - [x] hot reload enabled
-- [x] friendlier webpack logger using [friendly-errors-webpack-plugin](https://github.com/geowarin/friendly-errors-webpack-plugin#readme), be ware if server run on dashboard view, normal loggint will still persist.
-- [x] dasboard view from [webpack-dashboard](https://github.com/FormidableLabs/webpack-dashboard), this might be optional, but it will only happen if you run `yarn dashboard`
+- [x] friendlier webpack logger using [friendly-errors-webpack-plugin](https://github.com/geowarin/friendly-errors-webpack-plugin#readme)
 
 ### Optional feature not include
 

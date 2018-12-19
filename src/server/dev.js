@@ -2,7 +2,6 @@ import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import express from "express";
 import webpack from "webpack";
-import DashboardPlugin from "webpack-dashboard/plugin";
 import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
 
 import webpackConfig from "../../webpack.config";
@@ -17,11 +16,11 @@ const envConfig = webpackConfig({}, { mode: "development" });
 // invoking it is neccessary
 // in webpack.config.js are exported using function
 const compiler = webpack(envConfig);
-compiler.apply(new DashboardPlugin());
 compiler.apply(
   new FriendlyErrorsWebpackPlugin({
     compilationSuccessInfo: {
-      messages: [`You application is running here http://localhost:${PORT}`]
+      messages: [`You application is running at http://localhost:${PORT}`],
+      notes: ["Press Ctrl+C to quit"]
     }
   })
 );
@@ -47,7 +46,4 @@ app
       res.end();
     });
   })
-  .listen(PORT, () => {
-    console.log(`App listening to ${PORT}`);
-    console.log("Press Ctrl+C to quit");
-  });
+  .listen(PORT);

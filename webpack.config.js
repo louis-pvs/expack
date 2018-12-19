@@ -4,6 +4,7 @@ const merge = require("webpack-merge");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const OpenBrowserPlugin = require("open-browser-webpack-plugin");
 
 const DIST_DIR = path.join(__dirname, "/dist");
 
@@ -41,7 +42,10 @@ module.exports = (env, args) => {
       ]
     },
     // hot reload only needed in development
-    plugins: [new webpack.HotModuleReplacementPlugin()]
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      new OpenBrowserPlugin({ url: "http://localhost:3000" })
+    ]
   };
   const prodConfig = {
     mode: "production",

@@ -50,3 +50,4 @@ A: structure your code like production ready even when it still in development
 
 - [ ] add more comment with description in each configuration options
 - [ ] add a sample git `post-receive` hook
+- [ ] sharing `PORT` across webpack config and server config

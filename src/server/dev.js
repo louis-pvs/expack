@@ -3,6 +3,7 @@ import webpackHotMiddleware from "webpack-hot-middleware";
 import express from "express";
 import webpack from "webpack";
 import DashboardPlugin from "webpack-dashboard/plugin";
+import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
 
 import webpackConfig from "../../webpack.config";
 
@@ -17,10 +18,18 @@ const envConfig = webpackConfig({}, { mode: "development" });
 // in webpack.config.js are exported using function
 const compiler = webpack(envConfig);
 compiler.apply(new DashboardPlugin());
+compiler.apply(
+  new FriendlyErrorsWebpackPlugin({
+    compilationSuccessInfo: {
+      messages: [`You application is running here http://localhost:${PORT}`]
+    }
+  })
+);
 
 const devMiddleware = webpackDevMiddleware(compiler, {
   // required option for webpack-dev-middleware
-  publicPath: envConfig.output.publicPath
+  publicPath: envConfig.output.publicPath,
+  logLevel: "silent"
 });
 
 // create app instance
@@ -28,7 +37,7 @@ const app = express();
 
 app
   .use(devMiddleware)
-  .use(webpackHotMiddleware(compiler))
+  .use(webpackHotMiddleware(compiler, { log: false }))
   .get("/", (req, res, next) => {
     // error occored during run time if not using relative path
     compiler.outputFileSystem.readFile("./index.html", (err, result) => {

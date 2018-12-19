@@ -2,6 +2,7 @@ import webpackDevMiddleware from "webpack-dev-middleware";
 import webpackHotMiddleware from "webpack-hot-middleware";
 import express from "express";
 import webpack from "webpack";
+import DashboardPlugin from "webpack-dashboard/plugin";
 
 import webpackConfig from "../../webpack.config";
 
@@ -15,6 +16,7 @@ const envConfig = webpackConfig({}, { mode: "development" });
 // invoking it is neccessary
 // in webpack.config.js are exported using function
 const compiler = webpack(envConfig);
+compiler.apply(new DashboardPlugin());
 
 const devMiddleware = webpackDevMiddleware(compiler, {
   // required option for webpack-dev-middleware

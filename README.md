@@ -26,7 +26,6 @@ _Q: why serving your app from `dist` instead of `src`?_
 
 A: structure your code like production ready even when it still in development
 
-
 #### run on your droplet
 
 - git remote add origin `$YOUR_REMOTE_GIT_URL`
@@ -40,6 +39,7 @@ A: structure your code like production ready even when it still in development
 - [x] webpack config for both dev and prod
 - [x] eslint enabled
 - [x] hot reload enabled
+- [x] dasboard view from [webpack-dashboard](https://github.com/FormidableLabs/webpack-dashboard), this might be optional, but it will only happen if you run `yarn dashboard`
 
 ### Optional feature not include
 

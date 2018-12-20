@@ -1,21 +1,23 @@
+const express = require("express");
+
+const webpack = require("webpack");
+// webpack plugins and middlewares
 const webpackDevMiddleware = require("webpack-dev-middleware");
 const webpackHotMiddleware = require("webpack-hot-middleware");
-const express = require("express");
-const webpack = require("webpack");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const OpenBrowserPlugin = require("open-browser-webpack-plugin");
-const webpackConfig = require("../../webpack.config");
+
+// webpack configs
+// hardcode mode variable
+// equivalent to --mode=development
+const config = require("../webpack.config")({}, { mode: "development" });
 
 // configure server port:
 const PORT = process.env.PORT || 3000;
 
-// hardcoding the mode variables
-// equivalent to --mode=development or
-const envConfig = webpackConfig({}, { mode: "development" });
-
 // invoking it is neccessary
 // in webpack.config.js are exported using function
-const compiler = webpack(envConfig);
+const compiler = webpack(config);
 
 // applying the plugin here to share PORT definition
 // format webpack logs in friendlier manner
@@ -32,7 +34,7 @@ compiler.apply(new OpenBrowserPlugin({ url: `http://localhost:${PORT}` }));
 
 const devMiddleware = webpackDevMiddleware(compiler, {
   // required option for webpack-dev-middleware
-  publicPath: envConfig.output.publicPath,
+  publicPath: config.output.publicPath,
   logLevel: "silent"
 });
 

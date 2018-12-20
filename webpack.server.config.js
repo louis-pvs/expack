@@ -2,8 +2,8 @@ const path = require("path");
 const nodeExternals = require("webpack-node-externals");
 
 const PATHS = {
-  SRC_DIR: path.join(__dirname, "/src/server"),
-  DIST_DIR: path.join(__dirname, "/dist")
+  SRC_DIR: path.join(__dirname, "/server"),
+  DIST_DIR: path.join(__dirname, "/dist/server")
 };
 
 module.exports = (env, args) => {
@@ -14,7 +14,7 @@ module.exports = (env, args) => {
   return {
     mode: args.mode,
     entry: {
-      server: entryFile[args.mode]
+      index: entryFile[args.mode]
     },
     output: {
       path: PATHS.DIST_DIR,

@@ -5,7 +5,7 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
-const DIST_DIR = path.join(__dirname, "/dist");
+const DIST_DIR = path.join(__dirname, "/dist/client");
 
 // comparing to webpack early version, configs file has become much simpler
 // splitting them into different file for your own convenient if needed

@@ -29,8 +29,9 @@ A: structure your code like production ready even when it still in development
 #### run on your droplet
 
 - git remote add origin `$YOUR_REMOTE_GIT_URL`
-- adding post-receive [hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) in `${YOUR_REMOTE_GIT}.git/hook/post-receive`
 - git push origin master
+- start your server by running `yarn start`
+- for better continuous integrate, create a `post-receive` [hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) in `${YOUR_REMOTE_GIT}.git/hook/post-receive`
   > extra thanks for this [friendly guide](https://medium.com/@aunnnn/automate-digitalocean-deployment-for-node-js-with-git-and-pm2-67a3cfa7a02b) to walk through how to setup git hook
 
 ### Feature
@@ -45,6 +46,10 @@ A: structure your code like production ready even when it still in development
 
 - [ ] add react into stack
 - [ ] css compilation (during the time when of [cssinjs](https://github.com/cssinjs) getting their popularity, and I decide not include it in the stack)
+- [ ] alternate api server, expectation to work with
+  - [ ] RESTful api
+  - [ ] graphql
+  - [ ] and maybe socket
 
 ### Todo
 

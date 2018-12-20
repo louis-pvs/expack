@@ -4,7 +4,6 @@ const merge = require("webpack-merge");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
-const OpenBrowserPlugin = require("open-browser-webpack-plugin");
 
 const DIST_DIR = path.join(__dirname, "/dist");
 

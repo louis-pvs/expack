@@ -1,10 +1,10 @@
-import webpackDevMiddleware from "webpack-dev-middleware";
-import webpackHotMiddleware from "webpack-hot-middleware";
-import express from "express";
-import webpack from "webpack";
-import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
-import OpenBrowserPlugin from "open-browser-webpack-plugin";
-import webpackConfig from "../../webpack.config";
+const webpackDevMiddleware = require("webpack-dev-middleware");
+const webpackHotMiddleware = require("webpack-hot-middleware");
+const express = require("express");
+const webpack = require("webpack");
+const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
+const OpenBrowserPlugin = require("open-browser-webpack-plugin");
+const webpackConfig = require("../../webpack.config");
 
 // configure server port:
 const PORT = process.env.PORT || 3000;

@@ -1,25 +1,17 @@
 const path = require("path");
+const webpack = require("webpack");
 const nodeExternals = require("webpack-node-externals");
 
-const PATHS = {
-  SRC_DIR: path.join(__dirname, "/server"),
-  DIST_DIR: path.join(__dirname, "/dist/server")
-};
-
-module.exports = (env, args) => {
-  const entryFile = {
-    production: path.join(PATHS.SRC_DIR, "/prod.js"),
-    development: path.join(PATHS.SRC_DIR, "/dev.js")
-  };
+module.exports = ({ mode } = { mode: "production" }) => {
   return {
-    mode: args.mode,
+    mode,
     entry: {
-      index: entryFile[args.mode]
+      index: path.resolve(__dirname, `./server/${mode}.js`)
     },
     output: {
-      path: PATHS.DIST_DIR,
+      path: path.resolve(__dirname, "./dist/server/"),
       publicPath: "/",
-      filename: "[name].js"
+      filename: "[name].bundle.js"
     },
     target: "node",
     node: {
@@ -31,11 +23,12 @@ module.exports = (env, args) => {
     module: {
       rules: [
         {
-          test: /\.js?$/,
+          test: /\.js$/,
           exclude: /node_modules/,
           use: { loader: "babel-loader" }
         }
       ]
-    }
+    },
+    plugins: [new webpack.ProgressPlugin()]
   };
 };

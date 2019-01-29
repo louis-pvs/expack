@@ -41,6 +41,9 @@ module.exports = ({ mode } = { mode: "production" }) => {
           }
         ]
       },
+      resolve: {
+        extensions: [".js", ".jsx"]
+      },
       plugins: [
         new webpack.ProgressPlugin(),
         new HtmlWebpackPlugin({

@@ -9,7 +9,7 @@
   "scripts": {
     "test": "jest",
     "start": "node ./dist/server/index.bundle.js",
-    "dev": "node ./server/dev.js",
+    "dev": "mode=development node ./server/development.js",
     "build:server": "webpack --config webpack.server.config.js",
     "build:app": "webpack",
     "build": "run-p \"build:* --parallel --env.mode production\"",

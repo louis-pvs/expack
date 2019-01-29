@@ -9,8 +9,8 @@ const OpenBrowserPlugin = require("open-browser-webpack-plugin");
 
 // webpack configs
 // hardcode mode variable
-// equivalent to --mode=development
-const config = require("../webpack.config")({}, { mode: "development" });
+// equivalent to -- env.mode development
+const config = require("../webpack.config")(process.env);
 
 // configure server port:
 const PORT = process.env.PORT || 3000;

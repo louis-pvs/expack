@@ -8,6 +8,7 @@
   "private": true,
   "scripts": {
     "test": "jest",
+    "measure": "node ./performance.js",
     "start": "mode=production node ./dist/server/index.bundle.js",
     "dev": "mode=development node ./server/development.js",
     "build:server": "webpack --config webpack.server.config.js",

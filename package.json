@@ -9,14 +9,14 @@
   "scripts": {
     "test": "jest",
     "measure": "node ./performance.js",
+    "bundle:server": "webpack --config webpack.server.config.js",
+    "bundle:app": "webpack",
     "analyze:prod": "webpack --env.mode production --env.presets analyze",
     "analyze:dev": "webpack --env.mode development --env.presets analyze",
-    "start": "mode=production node ./dist/server/index.bundle.js",
-    "dev": "mode=development node ./server/development.js",
-    "build:server": "webpack --config webpack.server.config.js",
-    "build:app": "webpack",
-    "build": "run-p \"build:* --parallel --env.mode production\"",
-    "build-dev": "run-p \"build:* --parallel --env.mode development\""
+    "start:prod": "mode=production node ./dist/server/index.bundle.js",
+    "start:dev": "mode=development node ./server/development.js",
+    "build:prod": "run-p \"bundle:* --parallel --env.mode production\"",
+    "build:dev": "run-p \"bundle:* --parallel --env.mode development\""
   },
   "dependencies": {
     "express": "^4.16.4",

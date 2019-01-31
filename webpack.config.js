@@ -4,9 +4,10 @@ const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const modeConfig = env => require(`./build-utils/webpack.${env}`);
+const presetConfig = require("./build-utils/loadPresets");
 const DIST_DIR = path.join(__dirname, "/dist/client");
 
-module.exports = ({ mode } = { mode: "production" }) => {
+module.exports = ({ mode, presets } = { mode: "production", presets: [] }) => {
   console.info(`webpack start bundling ${mode} build...`);
   return merge(
     {
@@ -55,6 +56,7 @@ module.exports = ({ mode } = { mode: "production" }) => {
         })
       ]
     },
-    modeConfig(mode)
+    modeConfig(mode),
+    presetConfig({ mode, presets })
   );
 };

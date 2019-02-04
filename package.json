@@ -11,12 +11,12 @@
     "measure": "node ./performance.js",
     "bundle:server": "webpack --config webpack.server.config.js",
     "bundle:app": "webpack",
-    "analyze:prod": "webpack --env.mode production --env.presets analyze",
-    "analyze:dev": "webpack --env.mode development --env.presets analyze",
+    "analyze:prod": "BABEL_ENV=production webpack --env.mode production --env.presets analyze",
+    "analyze:dev": "BABEL_ENV=development webpack --env.mode development --env.presets analyze",
     "start:prod": "mode=production node ./dist/server/index.bundle.js",
     "start:dev": "mode=development node ./server/development.js",
-    "build:prod": "run-p \"bundle:* --parallel --env.mode production\"",
-    "build:dev": "run-p \"bundle:* --parallel --env.mode development\""
+    "build:prod": "BABEL_ENV=production run-p \"bundle:* --parallel --env.mode production\"",
+    "build:dev": "BABEL_ENV=development run-p \"bundle:* --parallel --env.mode development\""
   },
   "dependencies": {
     "express": "^4.16.4",
@@ -31,6 +31,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "clean-webpack-plugin": "^1.0.0",
     "eslint": "^5.12.1",
     "eslint-loader": "^2.1.1",

@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default function Article() {
+export default function Article({ className }) {
   return (
-    <article>
+    <article className={className}>
       <h2>Lorem Ipsum</h2>
       <h5>The standard Lorem Ipsum passage, used since the 1500s</h5>
       <p>
@@ -94,3 +95,7 @@ export default function Article() {
     </article>
   );
 }
+
+Article.propTypes = {
+  className: PropTypes.string
+};
